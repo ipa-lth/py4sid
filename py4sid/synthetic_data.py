@@ -15,13 +15,14 @@ def rand_lds(n,p,eig_min=0.5,eig_max=1.0):
 
     return A,B,C,D
 
-def rand_data(T,(A,B,C,D)):
+def rand_data(T,ABCD):
+    A,B,C,D = ABCD
     p,n = C.shape
     x = np.empty((T,n))
 
     v = randn(T,n)
     x[0] = 0
-    for t in xrange(T-1):
+    for t in range(T-1):
         x[t+1] = A.dot(x[t]) + B.dot(v[t])
 
     w = randn(T,p)

@@ -62,13 +62,13 @@ def normalize(a):
 
 def plot_eigvals(mat,*args,**kwargs):
     evals = np.linalg.eigvals(mat)
-    print sorted(evals,key=np.real)
+    print(sorted(evals,key=np.real))
     plt.plot(np.real(evals),np.imag(evals),*args,**kwargs)
     plt.axis([-1,1,-1,1])
 
 def plot_singularvals(mat,*args,**kwargs):
     svals = normalize(np.linalg.svd(mat)[1])
-    print svals
+    print(svals)
     plt.plot(svals)
 
 ##########

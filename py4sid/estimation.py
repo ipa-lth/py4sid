@@ -3,7 +3,7 @@ import numpy as np
 import scipy
 import matplotlib.pyplot as plt
 
-from util import AR_striding, project_rowspace, \
+from py4sid import AR_striding, project_rowspace, \
         thin_svd, thin_svd_randomized, solve_psd
 
 ####################
@@ -17,7 +17,9 @@ def compute_Ys(y,i):
     Ypp, Yfm = Y[:(i+1)*p].copy(), Y[(i+1)*p:].copy()
     return (Yp, Yf), (Ypp, Yfm)
 
-def compute_Os((Yp,Yf),(Ypp,Yfm)):
+def compute_Os(Y_,Y__):
+    (Yp,Yf) = Y_
+    (Ypp,Yfm) = Y__
     Oi = project_rowspace(Yf,Yp)
     Oim1 = project_rowspace(Yfm,Ypp)
     return Oi, Oim1
@@ -123,6 +125,6 @@ def estimate_parameters_moments(y,i,nhat):
 
 
 # python abuse!
-from util import attach_print_enter_exit
+from py4sid import attach_print_enter_exit
 attach_print_enter_exit()
 
